@@ -19,16 +19,24 @@ Outputs a static site to `dist/`.
 
 ## Deploy on Vercel
 
-This app lives in the `web/` subdirectory of the repo, not the repo root.
+The app lives at the repo root — `index.html`, `package.json` and `vite.config.js`
+are all top level, so the Vercel project's **Root Directory** must be left empty
+(the repo root). Setting it to `web` will fail the build with
+"The specified Root Directory 'web' does not exist".
 
 1. Import the GitHub repo into Vercel.
-2. In the project's **Settings → General → Root Directory**, set it to `web`.
-3. Framework Preset should auto-detect as **Vite** (build command `npm run build`, output `dist`) — `vercel.json` in this folder pins that explicitly.
-4. No environment variables are required; the Calendly embed and Formspree endpoint are public URLs baked into the code (`src/siteConfig.js`).
+2. Leave **Settings → General → Root Directory** blank.
+3. Framework Preset auto-detects as **Vite** (build command `npm run build`,
+   output `dist`) — `vercel.json` pins that explicitly.
+4. No environment variables are required; the Calendly embed and GoHighLevel
+   webhook are public URLs baked into the code (`src/siteConfig.js`).
 
-Deploying via the Vercel CLI from this folder works the same way without the Root Directory step:
+Deploying with the Vercel CLI from the repo root works the same way:
 
 ```
-cd web
 vercel
 ```
+
+The production URL is https://brandfacemediasite.vercel.app — the `og:url` and
+`og:image` tags in `index.html` are absolute and must match it, so update them
+if a custom domain is added.
