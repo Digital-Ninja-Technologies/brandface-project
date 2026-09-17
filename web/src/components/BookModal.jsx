@@ -35,8 +35,8 @@ export default function BookModal() {
             <>
               <h3>Tell us about your firm.</h3>
               <p>
-                A few quick questions so the call is useful from the first minute. You'll pick a time on the next
-                step.
+                Leave your details and you'll pick a time on the next step. A 30-minute call, no obligation and no
+                pressure.
               </p>
             </>
           )}

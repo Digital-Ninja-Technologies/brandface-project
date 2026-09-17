@@ -1,18 +1,11 @@
 import { useId, useState } from 'react';
 import { CALENDLY_URL, GHL_WEBHOOK_URL } from '../siteConfig.js';
 
-const DECISION_MAKER_OPTIONS = ['Yes', 'No, I share decisions', 'No, someone else decides'];
-const TIMELINE_OPTIONS = ['Immediately', 'Within 30 days', 'Just exploring'];
-
 const EMPTY_FORM = {
   fullName: '',
   email: '',
   phone: '',
   firmName: '',
-  bottleneck: '',
-  decisionMaker: '',
-  timeline: '',
-  casesPerMonth: '',
 };
 
 function splitName(fullName) {
@@ -33,10 +26,6 @@ async function submitLead(form) {
       email: form.email,
       phone: form.phone,
       companyName: form.firmName,
-      marketing_bottleneck: form.bottleneck,
-      sole_decision_maker: form.decisionMaker,
-      timeline: form.timeline,
-      cases_per_month: form.casesPerMonth,
     }),
   });
   if (!res.ok) {
@@ -44,7 +33,7 @@ async function submitLead(form) {
   }
 }
 
-// Two steps: qualification form -> Calendly. Submitting posts the lead to the GHL
+// Two steps: contact details -> Calendly. Submitting posts the lead to the GHL
 // webhook and routes straight to the scheduler, with no confirmation screen between.
 //
 // Both steps stay mounted and are toggled with a class rather than unmounted, so the
@@ -132,64 +121,6 @@ export default function BookingFlow({ step, onSubmitSuccess, calendlyClassName }
             required
             value={form.firmName}
             onChange={update('firmName')}
-          />
-        </div>
-        <div className="bf-field">
-          <label htmlFor={fieldId('bottleneck')}>What's your #1 marketing bottleneck right now?</label>
-          <input
-            id={fieldId('bottleneck')}
-            name="bottleneck"
-            type="text"
-            placeholder="e.g. Not enough inbound leads"
-            required
-            value={form.bottleneck}
-            onChange={update('bottleneck')}
-          />
-        </div>
-        <div className="bf-field">
-          <label htmlFor={fieldId('decisionMaker')}>
-            Are you the sole decision-maker for marketing decisions at your firm?
-          </label>
-          <select
-            id={fieldId('decisionMaker')}
-            name="decisionMaker"
-            required
-            value={form.decisionMaker}
-            onChange={update('decisionMaker')}
-          >
-            <option value="" disabled>
-              Select one
-            </option>
-            {DECISION_MAKER_OPTIONS.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="bf-field">
-          <label htmlFor={fieldId('timeline')}>How soon are you looking to get started?</label>
-          <select id={fieldId('timeline')} name="timeline" required value={form.timeline} onChange={update('timeline')}>
-            <option value="" disabled>
-              Select one
-            </option>
-            {TIMELINE_OPTIONS.map((o) => (
-              <option key={o} value={o}>
-                {o}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="bf-field">
-          <label htmlFor={fieldId('casesPerMonth')}>Roughly how many new cases/clients are you looking to add per month?</label>
-          <input
-            id={fieldId('casesPerMonth')}
-            name="casesPerMonth"
-            type="text"
-            placeholder="e.g. 10"
-            required
-            value={form.casesPerMonth}
-            onChange={update('casesPerMonth')}
           />
         </div>
         {error && <p className="bf-field-error">{error}</p>}

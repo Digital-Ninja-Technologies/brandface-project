@@ -17,7 +17,7 @@ export default function BookCta() {
         <Reveal as="p" delay={140} className="sub">
           {leadSubmitted
             ? 'Pick a time below. A 30-minute call, no obligation and no pressure.'
-            : "Tell us about your firm and we'll map out exactly how the engine would work for you. No obligation and no pressure."}
+            : "Leave your details and pick a time - we'll map out exactly how the engine would work for your firm. No obligation and no pressure."}
         </Reveal>
 
         <Reveal delay={200} className="bf-calendly-wrap">
