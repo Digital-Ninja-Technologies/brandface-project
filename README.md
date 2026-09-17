@@ -37,6 +37,6 @@ Deploying with the Vercel CLI from the repo root works the same way:
 vercel
 ```
 
-The production URL is https://brandface-eta.vercel.app — the `og:url` and
+The production URL is https://brandfacemediasite.vercel.app — the `og:url` and
 `og:image` tags in `index.html` are absolute and must match it, so update them
 if a custom domain is added.
