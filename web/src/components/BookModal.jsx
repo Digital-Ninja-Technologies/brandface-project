@@ -1,11 +1,12 @@
+import BookingFlow from './BookingFlow.jsx';
 import { useBooking } from '../BookingContext.jsx';
-import { CALENDLY_URL, GUARANTEE_CONSULTS, GUARANTEE_DAYS } from '../siteConfig.js';
+import { GUARANTEE_CONSULTS, GUARANTEE_DAYS } from '../siteConfig.js';
 
 // Stays mounted at all times (rather than unmounting when closed) so the Calendly
 // iframe loads in the background from page load - it's instant by the time someone
-// actually opens the modal, instead of loading from scratch on every open.
+// actually reaches the scheduling step, instead of loading from scratch.
 export default function BookModal() {
-  const { modalOpen, closeModal } = useBooking();
+  const { modalOpen, closeModal, leadSubmitted, markLeadSubmitted } = useBooking();
 
   return (
     <div
@@ -22,16 +23,30 @@ export default function BookModal() {
 
         <div className="bf-modal-head">
           <div className="bf-eyebrow">Book a strategy call</div>
-          <h3>Pick a time that works for you.</h3>
-          <p>
-            A 30-minute call, no obligation and no pressure. Backed by the {GUARANTEE_CONSULTS} consultation,{' '}
-            {GUARANTEE_DAYS}-day guarantee on the Growth Engine.
-          </p>
+          {leadSubmitted ? (
+            <>
+              <h3>Pick a time that works for you.</h3>
+              <p>
+                A 30-minute call, no obligation and no pressure. Backed by the {GUARANTEE_CONSULTS} consultation,{' '}
+                {GUARANTEE_DAYS}-day guarantee on the Growth Engine.
+              </p>
+            </>
+          ) : (
+            <>
+              <h3>Tell us about your firm.</h3>
+              <p>
+                A few quick questions so the call is useful from the first minute. You'll pick a time on the next
+                step.
+              </p>
+            </>
+          )}
         </div>
         <div className="bf-modal-body">
-          <div className="bf-modal-calendly">
-            <iframe src={CALENDLY_URL} title="Schedule a call with BrandFace Media" />
-          </div>
+          <BookingFlow
+            step={leadSubmitted ? 'calendly' : 'form'}
+            onSubmitSuccess={markLeadSubmitted}
+            calendlyClassName="bf-modal-calendly"
+          />
         </div>
       </div>
     </div>
