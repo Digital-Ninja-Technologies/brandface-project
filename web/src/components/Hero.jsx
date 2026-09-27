@@ -1,7 +1,6 @@
 import Reveal from './Reveal.jsx';
 import VideoBox from './VideoBox.jsx';
 import { useBooking } from '../BookingContext.jsx';
-import { GUARANTEE_CONSULTS, GUARANTEE_DAYS } from '../siteConfig.js';
 
 export default function Hero() {
   const { openModal } = useBooking();
@@ -15,25 +14,16 @@ export default function Hero() {
         </Reveal>
 
         <Reveal as="h1" delay={80}>
-          {GUARANTEE_CONSULTS} qualified consultations in your first {GUARANTEE_DAYS} days.
-          <span className="bf-italic-gold">Guaranteed.</span>
+          We make your content.
+          <span className="bf-italic-gold">Then we turn it into your ads.</span>
         </Reveal>
 
-        <Reveal delay={160} className="bf-video-frame bf-video-frame-hero">
-          <VideoBox title="BrandFace Media breakdown" />
+        <Reveal as="p" delay={140} className="bf-hero-sub">
+          One of our attorneys now signs cases for about $200 in ad spend. We fly out, film you, publish 15 videos a
+          month, and run them as your ads. Built for law firms in every practice area.
         </Reveal>
 
-        <Reveal as="p" delay={200} className="bf-hero-watch-note">
-          Watch this before booking — it explains exactly how the program works and whether you're a fit.{' '}
-          <span className="bf-watch-note-emphasis">6 minutes</span> now saves you the wrong call later.
-        </Reveal>
-
-        <Reveal as="p" delay={240} className="bf-hero-sub">
-          A done-for-you growth engine built exclusively for ambitious law firms, handling the content, ads, and
-          automation most agencies never touch.
-        </Reveal>
-
-        <Reveal delay={300} className="bf-hero-ctas">
+        <Reveal delay={200} className="bf-hero-ctas">
           <a
             href="#book"
             className="bf-btn-gold-lg"
@@ -44,6 +34,14 @@ export default function Hero() {
           >
             Book your strategy call →
           </a>
+        </Reveal>
+
+        <Reveal delay={260} className="bf-video-frame bf-video-frame-hero">
+          <VideoBox title="BrandFace Media breakdown" />
+        </Reveal>
+
+        <Reveal as="p" delay={300} className="bf-hero-watch-note">
+          Want the full breakdown first? <span className="bf-watch-note-emphasis">It's 6 minutes.</span>
         </Reveal>
       </div>
     </header>

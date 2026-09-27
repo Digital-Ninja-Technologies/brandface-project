@@ -3,10 +3,6 @@ import { useBooking } from '../BookingContext.jsx';
 
 export default function Offer() {
   const { openModal } = useBooking();
-  const handleBook = (e) => {
-    e.preventDefault();
-    openModal();
-  };
 
   return (
     <section id="offer" className="bf-section-tight bf-section-alt">
@@ -14,71 +10,43 @@ export default function Offer() {
         <div className="bf-center bf-offer-head">
           <Reveal className="bf-eyebrow bf-section-tight-inner">The offer</Reveal>
           <Reveal as="h2" delay={80}>
-            Two tiers. Both fully managed.
+            90 days. We fly out and film you, publish 15 videos a month, and turn your best ones into ads that bring
+            in cases.
           </Reveal>
         </div>
 
-        <div className="bf-offer-grid">
-          <Reveal className="bf-tier">
-            <div className="bf-tier-label">Authority Engine</div>
-            <div className="bf-tier-price">
-              <span className="amount">$3,000</span>
-              <span className="period">/ month</span>
-            </div>
-            <p className="bf-tier-desc">The content-only tier. The complete authority-building machine.</p>
-            <div className="bf-tier-divider" />
-            <ul className="bf-tier-list">
-              <li>
-                <span className="check">✓</span> 15 short-form videos per month
-              </li>
-              <li>
-                <span className="check">✓</span> Scripted, filmed, edited &amp; published
-              </li>
-              <li>
-                <span className="check">✓</span> Managed across every platform
-              </li>
-            </ul>
-            <div className="bf-tier-cta">
-              <a href="#book" className="bf-tier-cta-outline" onClick={handleBook}>
-                Start with Authority
-              </a>
-            </div>
-          </Reveal>
+        <Reveal delay={140} as="p" className="bf-offer-price">
+          Programs start at <span className="accent">$12,000</span> for 90 days.
+        </Reveal>
 
-          <Reveal delay={120} className="bf-tier bf-tier-featured">
-            <div className="bf-tier-featured-badge">Includes the guarantee</div>
-            <div className="bf-tier-label" style={{ color: 'var(--gold-text)' }}>
-              Growth Engine
-            </div>
-            <div className="bf-tier-price">
-              <span className="amount">$5,000</span>
-              <span className="period">/ month</span>
-            </div>
-            <p className="bf-tier-desc">Everything in Authority, plus the full ads + automation suite.</p>
-            <div className="bf-tier-divider" />
-            <ul className="bf-tier-list">
-              <li>
-                <span className="check">✓</span> Everything in Authority Engine
-              </li>
-              <li>
-                <span className="check">✓</span> Managed paid lead campaigns
-              </li>
-              <li>
-                <span className="check">✓</span> Full speed-to-lead automation suite
-              </li>
-              <li>
-                <span className="check">✓</span> 90-day qualified-consultation guarantee
-              </li>
-            </ul>
-            <div className="bf-tier-cta">
-              <a href="#book" className="bf-tier-cta-gold" onClick={handleBook}>
-                Book your strategy call →
-              </a>
-            </div>
-          </Reveal>
-        </div>
-        <Reveal as="p" className="bf-offer-note">
+        <Reveal as="p" delay={180} className="bf-offer-note">
           Ad spend is separate, controlled by you, and prescribed by us. Most firms start around $1,000/month.
+        </Reveal>
+
+        <Reveal delay={240} className="bf-card bf-card-highlight bf-offer-guarantee">
+          <div className="bf-eyebrow">The guarantee</div>
+          <ul className="bf-tier-list">
+            <li>
+              <span className="check">✓</span> Content: 1,000,000 views in 90 days.
+            </li>
+            <li>
+              <span className="check">✓</span> Content + Ads: 20–30 qualified consultations in 90 days.
+            </li>
+          </ul>
+          <p>Miss it and we keep working free until you hit it.</p>
+        </Reveal>
+
+        <Reveal delay={300} className="bf-center bf-offer-cta">
+          <a
+            href="#book"
+            className="bf-btn-gold-lg"
+            onClick={(e) => {
+              e.preventDefault();
+              openModal();
+            }}
+          >
+            Book your strategy call →
+          </a>
         </Reveal>
       </div>
     </section>

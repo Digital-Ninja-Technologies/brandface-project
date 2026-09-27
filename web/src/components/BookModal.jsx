@@ -1,6 +1,5 @@
 import BookingFlow from './BookingFlow.jsx';
 import { useBooking } from '../BookingContext.jsx';
-import { GUARANTEE_CONSULTS, GUARANTEE_DAYS } from '../siteConfig.js';
 
 // Stays mounted at all times (rather than unmounting when closed) so the Calendly
 // iframe loads in the background from page load - it's instant by the time someone
@@ -26,10 +25,7 @@ export default function BookModal() {
           {leadSubmitted ? (
             <>
               <h3>Pick a time that works for you.</h3>
-              <p>
-                A 30-minute call, no obligation and no pressure. Backed by the {GUARANTEE_CONSULTS} consultation,{' '}
-                {GUARANTEE_DAYS}-day guarantee on the Growth Engine.
-              </p>
+              <p>A 30-minute call, no obligation and no pressure. Backed by our 90-day guarantee.</p>
             </>
           ) : (
             <>

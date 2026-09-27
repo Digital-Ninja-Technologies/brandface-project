@@ -1,5 +1,3 @@
-export const GUARANTEE_CONSULTS = '20 - 30';
-export const GUARANTEE_DAYS = 90;
 export const GHL_WEBHOOK_URL =
   'https://services.leadconnectorhq.com/hooks/zw7Vnj9a5ButoeIr1IQ0/webhook-trigger/feeed3bb-b0cc-40b9-9de2-51e1ad836002';
 export const CALENDLY_URL = 'https://calendly.com/team-brandfacemedia/30min?hide_gdpr_banner=1';

@@ -1,7 +1,6 @@
 import Reveal from './Reveal.jsx';
 import BookingFlow from './BookingFlow.jsx';
 import { useBooking } from '../BookingContext.jsx';
-import { GUARANTEE_CONSULTS, GUARANTEE_DAYS } from '../siteConfig.js';
 
 export default function BookCta() {
   const { leadSubmitted, markLeadSubmitted } = useBooking();
@@ -26,9 +25,7 @@ export default function BookCta() {
             onSubmitSuccess={markLeadSubmitted}
             calendlyClassName="bf-calendly-frame"
           />
-          <p className="bf-book-note">
-            Backed by the {GUARANTEE_CONSULTS} consultation, {GUARANTEE_DAYS}-day guarantee on the Growth Engine.
-          </p>
+          <p className="bf-book-note">Backed by our 90-day guarantee.</p>
         </Reveal>
       </div>
     </section>

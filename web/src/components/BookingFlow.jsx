@@ -1,11 +1,14 @@
 import { useId, useState } from 'react';
 import { CALENDLY_URL, GHL_WEBHOOK_URL } from '../siteConfig.js';
+import { trackLead } from '../tracking.js';
 
 const EMPTY_FORM = {
   fullName: '',
   email: '',
   phone: '',
   firmName: '',
+  practiceArea: '',
+  instagramHandle: '',
 };
 
 function splitName(fullName) {
@@ -26,6 +29,8 @@ async function submitLead(form) {
       email: form.email,
       phone: form.phone,
       companyName: form.firmName,
+      practice_area: form.practiceArea,
+      instagram_handle: form.instagramHandle,
     }),
   });
   if (!res.ok) {
@@ -58,6 +63,7 @@ export default function BookingFlow({ step, onSubmitSuccess, calendlyClassName }
     setError(null);
     try {
       await submitLead(form);
+      trackLead(form);
       onSubmitSuccess(form);
     } catch {
       setError("Something went wrong sending that. Please try again, or email us directly if it keeps happening.");
@@ -121,6 +127,32 @@ export default function BookingFlow({ step, onSubmitSuccess, calendlyClassName }
             required
             value={form.firmName}
             onChange={update('firmName')}
+          />
+        </div>
+        <div className="bf-field">
+          <label htmlFor={fieldId('practiceArea')}>Practice area</label>
+          <input
+            id={fieldId('practiceArea')}
+            name="practiceArea"
+            type="text"
+            placeholder="e.g. Personal injury"
+            required
+            value={form.practiceArea}
+            onChange={update('practiceArea')}
+          />
+        </div>
+        <div className="bf-field">
+          <label htmlFor={fieldId('instagramHandle')}>
+            Instagram handle <span className="bf-field-optional">(optional)</span>
+          </label>
+          <input
+            id={fieldId('instagramHandle')}
+            name="instagramHandle"
+            type="text"
+            autoComplete="off"
+            placeholder="@yourfirm"
+            value={form.instagramHandle}
+            onChange={update('instagramHandle')}
           />
         </div>
         {error && <p className="bf-field-error">{error}</p>}

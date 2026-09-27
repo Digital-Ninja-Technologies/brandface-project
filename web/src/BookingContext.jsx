@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { onCalendlyScheduled, trackMeetingScheduled } from './tracking.js';
 
 const BookingContext = createContext(null);
 
@@ -18,6 +19,10 @@ export function BookingProvider({ children }) {
   const closeModal = useCallback(() => {
     setModalOpen(false);
   }, []);
+
+  // Mounted once for the whole page, so a booking is reported whichever scheduler
+  // the visitor used - the popup or the on-page section.
+  useEffect(() => onCalendlyScheduled(trackMeetingScheduled), []);
 
   useEffect(() => {
     document.body.style.overflow = modalOpen ? 'hidden' : '';
